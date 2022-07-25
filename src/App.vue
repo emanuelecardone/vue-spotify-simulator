@@ -28,7 +28,8 @@ export default {
             'generi e mood',
             'nuove uscite',
             'scopri'
-          ]
+          ],
+          currentSection: 0
         }
       }
     };

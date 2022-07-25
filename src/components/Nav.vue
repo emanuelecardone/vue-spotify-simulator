@@ -1,8 +1,8 @@
 <template>
     <nav class="w_60 mx-auto h_10 d-flex flex-wrap justify-content-around align-items-center">
-        <a v-for="link,index in navLinks" :key="link + index" href="#" 
-        class="text-uppercase" :class="{'selected': index === selectedLink}"
-        @click="selectedLink = index">
+        <a v-for="link,index in content.navLinks" :key="link + index" href="#" 
+        class="text-uppercase" :class="{'selected': index === content.currentSection}"
+        @click="content.currentSection = index">
             {{link}}
         </a>
     </nav>
@@ -12,13 +12,12 @@
 export default {
     name: 'Nav',
     props: {
-        navLinks: Array
+        content: Object
     },
     data: function(){
         return{
-            // Default
-            selectedLink: 0 
-        };
+
+        }
     }
 }
 </script>
