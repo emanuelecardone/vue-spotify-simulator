@@ -63,10 +63,11 @@ export default {
         }
 
         .playlist{
+            min-height: 170px;
+            overflow-y: auto;
 
             &_list{
-                min-height: 170px;
-                overflow-y: auto;
+               
             } 
         }
 
