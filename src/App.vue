@@ -17,12 +17,16 @@ export default {
       // Tutti i dati dell'App
       datas: {
         songs:{
+          currentSong: null,
+          
           // Canzoni per ogni sezione
           evidence:[
             {
               name: 'make me believe',
               artist: 'jamie berry',
-              image: 'make-me-believe'
+              image: 'make-me-believe',
+              source: 'makemebelieve',
+              section: 'evidence'
             }
           ]
         },

@@ -5,7 +5,7 @@
             <Nav :content="mainContent" />
             <div class="sections_wrapper w-100 h_90 p-5">
                 <!-- Stampato quello corrispondente all'index "currentSection" -->
-                <Evidence v-if="mainContent.currentSection === 0" :evidenceSongs="songs.evidence" />
+                <Evidence v-if="mainContent.currentSection === 0" :allSongs="songs" :evidenceSongs="songs.evidence" :current="songs.currentSong" />
                 <Podcast v-else-if="mainContent.currentSection === 1" />
                 <Leaderboards v-else-if="mainContent.currentSection === 2" />
                 <Mood v-else-if="mainContent.currentSection === 3" />

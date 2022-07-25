@@ -5,7 +5,7 @@
             <h5 class="card-title">{{song.name}}</h5>
             <p class="card-text">{{song.artist}}</p>
             <a href="#" class="btn btn-primary mt-2">
-                <i class="fa-solid fa-play fs-4"></i>
+                <i @click="setSong" class="fa-solid fa-play fs-4"></i>
             </a>
         </div>
     </div>
@@ -15,7 +15,15 @@
 export default {
     name: 'Card',
     props: {
-        song: Object
+        song: Object,
+        songIndex: Number,
+        songsData: Object
+    },
+    methods: {
+        // Set canzone (index)
+        setSong: function(){
+            this.songsData.currentSong = this.songIndex;
+        }
     }
 }
 </script>
