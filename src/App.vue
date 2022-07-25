@@ -16,6 +16,16 @@ export default {
     return{
       // Tutti i dati dell'App
       datas: {
+        songs:{
+          // Canzoni per ogni sezione
+          evidence:[
+            {
+              name: 'make me believe',
+              artist: 'jamie berry',
+              image: 'make-me-believe'
+            }
+          ]
+        },
         header:{
           button: 'effettua l\'upgrade'
         },

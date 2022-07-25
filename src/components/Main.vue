@@ -5,7 +5,7 @@
             <Nav :content="mainContent" />
             <div class="sections_wrapper w-100 h_90">
                 <!-- Stampato quello corrispondente all'index "currentSection" -->
-                <Evidence v-if="mainContent.currentSection === 0" />
+                <Evidence v-if="mainContent.currentSection === 0" :evidenceSongs="songs.evidence" />
                 <Podcast v-else-if="mainContent.currentSection === 1" />
                 <Leaderboards v-else-if="mainContent.currentSection === 2" />
                 <Mood v-else-if="mainContent.currentSection === 3" />
@@ -39,7 +39,8 @@ export default {
         Podcast
     },
     props: {
-        mainContent: Object
+        mainContent: Object,
+        songs: Object
     },
     data: function(){
         return{

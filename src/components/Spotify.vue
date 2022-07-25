@@ -1,7 +1,7 @@
 <template>
     <section class="spotify w-100 h-100">
         <Header :headerText="data.header" />
-        <Main :mainContent="data.main" />
+        <Main :mainContent="data.main" :songs="data.songs" />
         <Footer :footerContent="data.footer" :user="data.main.username" />
     </section>
 </template>
