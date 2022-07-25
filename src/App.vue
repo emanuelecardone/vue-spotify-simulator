@@ -29,7 +29,38 @@ export default {
             'nuove uscite',
             'scopri'
           ],
-          currentSection: 0
+          // Sezione attuale
+          currentSection: 0,
+          // Username (da fare dopo)
+          username: 'profilo',
+          // Aside
+          aside: {
+            // Icone
+            icons: [
+              {
+                name: 'home',
+                icon: 'fa-house'
+              },
+              {
+                name: 'cerca',
+                icon: 'fa-magnifying-glass'
+              }
+            ],
+            // Icona selezionata
+            selectedIcon: 0,
+            // Playlist
+            playlists: [
+              'playlist 1',
+              'playlist 2',
+              'playlist 3',
+              'playlist 4',
+              'playlist 5',
+              'playlist 6',
+              'playlist 7'
+            ],
+            // Playlist selezionata
+            selectedPlaylist: null
+          }
         }
       }
     };

@@ -34,8 +34,13 @@ export default {
             color: inherit;
             text-decoration: none;
 
+            &:hover{
+                color: $primary_color;
+            }
+
             &.selected{
                 border-bottom: 1px solid lime;
+                color: $primary_color;
             }
         }
     }
