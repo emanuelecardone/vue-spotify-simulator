@@ -2,7 +2,7 @@
     <section class="spotify w-100 h-100">
         <Header :headerText="data.header" />
         <Main :mainContent="data.main" />
-        <Footer />
+        <Footer :footerContent="data.footer" :user="data.main.username" />
     </section>
 </template>
 

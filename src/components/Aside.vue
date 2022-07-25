@@ -2,7 +2,7 @@
     <aside class="w_15 h-100 bg_black d-flex flex-column justify-content-start align-items-start pt-5 px-4 pb-3">
         <img class="w_150p" src="../assets/img/logo.svg" alt="logo">
         <div class="icons w-100">
-            <ul class="mt_40">
+            <ul class="mt_60">
                 <li v-for="icon, index in asideContent.icons" :key="icon.name">
                     <a href="#" class="fs-3 my-2" :class="{'primary': asideContent.selectedIcon === index}">
                         <i :class="'me-3 fa-solid ' + icon.icon"></i>
@@ -48,6 +48,7 @@ export default {
         left: 0;
         top: 0;
         color: $secondary_color;
+        min-width: 250px;
         a{
             color: inherit;
             text-decoration: none;

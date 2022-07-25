@@ -61,6 +61,13 @@ export default {
             // Playlist selezionata
             selectedPlaylist: null
           }
+        },
+        footer: {
+          icons: {
+            left: ['fa-heart', 'fa-folder'],
+            middle: ['fas fa-random', 'fas fa-step-backward', 'far fa-play-circle', 'fas fa-step-forward', 'fas fa-redo-alt'],
+            right: ['fa-list-ul', 'fa-desktop', 'fa-volume-up']
+          }
         }
       }
     };
