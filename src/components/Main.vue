@@ -3,7 +3,7 @@
         <Aside :asideContent="mainContent.aside" :username="mainContent.username" class="position-absolute" />
         <div class="right_main w_85 position-absolute">
             <Nav :content="mainContent" />
-            <div class="sections_wrapper w-100 h_90">
+            <div class="sections_wrapper w-100 h_90 p-5">
                 <!-- Stampato quello corrispondente all'index "currentSection" -->
                 <Evidence v-if="mainContent.currentSection === 0" :evidenceSongs="songs.evidence" />
                 <Podcast v-else-if="mainContent.currentSection === 1" />
