@@ -1,28 +1,46 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+  <div id="app" class="w-100 vh-100">
+    <Spotify :data="datas" />
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import Spotify from './components/Spotify.vue';
 
 export default {
   name: "App",
   components: {
-    HelloWorld,
+    Spotify
   },
+  data: function(){
+    return{
+      // Tutti i dati dell'App
+      datas: {
+        header:{
+          button: 'effettua l\'upgrade'
+        },
+        main: {
+          // Nav main
+          navLinks: [
+            'in evidenza',
+            'podcast',
+            'classifiche',
+            'generi e mood',
+            'nuove uscite',
+            'scopri'
+          ]
+        }
+      }
+    };
+  }
 };
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+@import './style/variables.scss';
+@import './style/mixins.scss';
+@import './style/general.scss';
+@import './style/size-space.scss';
+@import './style/utilities.scss';
+
 </style>
