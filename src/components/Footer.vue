@@ -1,7 +1,7 @@
 <template>
     <footer class="w-100 h_130p position-relative d-flex justify-content-between align-items-center px-2">
         <!-- LEFT -->
-        <div class="left_footer w_20 h-100 d-flex justify-content-between align-items-center text-white">
+        <div class="left_footer w-25 h-100 d-flex justify-content-between align-items-center text-white">
             <div class="song_box w_60 h-100 d-flex justify-content-between align-items-center">
                 <div class="w_50p h_50p d-flex me-3 justify-content-center align-items-center border border-2 border-white fs-6">
                 album
@@ -23,12 +23,12 @@
             </div> 
         </div>
         <!-- MIDDLE -->
-        <div class="middle_footer w_60 h-100">
+        <div class="middle_footer w-50 h-100">
             <div class="middle_icons w-100 h-50 d-flex align-items-center">
                 <ul class="w-100 d-flex justify-content-center align-items-center h-100">
                     <li v-for="icon,index in footerContent.icons.middle" :key="icon + index">
                         <a href="#">
-                            <i :class="'mx-3 ' + icon"></i>
+                            <i :class="icon"></i>
                         </a>
                     </li>
                 </ul>
@@ -38,7 +38,7 @@
             </div>
         </div>
         <!-- RIGHT -->
-        <div class="right_footer w_20 h-100 d-flex align-items-center">
+        <div class="right_footer w-25 h-100 d-flex justify-content-center align-items-center">
             <div class="right_footer_icons me-5 h-100">
                 <ul class="d-flex align-items-center h-100">
                     <li v-for="icon, index in footerContent.icons.right" :key="icon + index">
@@ -86,20 +86,47 @@ export default {
             i{
                 font-size: 2rem;
                 color: $primary_color;
+                margin: 0 20px 0;
                 
                 &:hover{
                     color: lime;
                 }
 
                 &.fa-play-circle{
-                font-size: 3rem;
+                    font-size: 3rem;
+
+                    @media screen and (max-width: 992px){
+                        font-size: 2rem;
+                    }
                 }
+
+                @media screen and (max-width: 992px){
+                    font-size: 1.5rem;
+                    margin: 0 10px 0;
+                }
+            }
+        }
+
+        .right_footer_icons,
+        .left_footer_icons{
+            @media screen and (max-width: 992px){
+                display: none;
             }
         }
 
         #volume,
         #song_range{
             cursor: pointer;
+        }
+
+        #volume{
+            width: 30%;
+            min-width: 50px;
+
+            @media screen and (max-width: 992px){
+                min-width: auto;
+                width: 80%;
+            }
         }
     }
 </style>

@@ -6,12 +6,12 @@
                 <li v-for="icon, index in asideContent.icons" :key="icon.name">
                     <a href="#" class="fs-3 my-2" :class="{'primary': asideContent.selectedIcon === index}">
                         <i :class="'me-3 fa-solid ' + icon.icon"></i>
-                        <span class="text-capitalize">{{icon.name}}</span>
+                        <span class="icon_name text-capitalize">{{icon.name}}</span>
                     </a>
                 </li>
             </ul>
         </div>
-        <div class="playlist w-100 flex-grow-1 mt_40">
+        <div class="playlist w-100 flex-column flex-grow-1 mt_40">
             <h4 class="text-white fs-2 text-uppercase mb-3">Playlists</h4>
             <ul class="playlist_list fs-3">
                 <li class="my-2 text-capitalize" v-for="playlist, index in asideContent.playlists" :key="playlist">
@@ -19,12 +19,12 @@
                 </li>
             </ul>
         </div>
-        <div class="install w-100 d-flex align-items-center">
+        <div class="install w-100  align-items-center">
             <img src="../assets/img/download.svg" alt="download" class="w_20p">
             <a href="#" class="ms-3 fs-4">Installa app</a>
         </div>
         <div class="line my-1"></div>
-        <div class="user d-flex align-items-center">
+        <div class="user align-items-center">
             <img src="../assets/img/profile.svg" alt="download" class="w_30p h_30p me-2 border border-1 border-white rounded-circle">
             <h4 class="text-white my-2 text-uppercase fs-3">{{username}}</h4>
         </div>
@@ -49,6 +49,11 @@ export default {
         top: 0;
         color: $secondary_color;
         min-width: 250px;
+        z-index: 2500;
+
+        @media screen and (max-width: 992px){
+            min-width: 80px;
+        }
         a{
             color: inherit;
             text-decoration: none;
@@ -66,10 +71,26 @@ export default {
         .playlist{
             min-height: 170px;
             overflow-y: auto;
+            @media screen and (max-width: 992px){
+                display: none;
+            }
+        }
 
-            &_list{
-               
-            } 
+        .install,
+        .line,
+        .user{
+            display: flex;
+
+            @media screen and (max-width: 992px){
+                display: none;
+            }
+        }
+
+        .icon_name{
+            display: inline;
+            @media screen and (max-width: 992px){
+                display: none;
+            }
         }
 
         .line{
