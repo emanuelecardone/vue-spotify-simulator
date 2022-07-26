@@ -10,7 +10,8 @@ export default {
     props: {
         source: String,
         command: String,
-        currentRange: String
+        currentRange: String,
+        currentVolume: String
     },
     data: function(){
         return{
@@ -24,8 +25,10 @@ export default {
                 this.audioHtml.pause();
               // Debug  
             } else if(this.command === 'song range' || this.command === 'song-range'){
-                console.log('test')
                 this.audioHtml.currentTime = this.audioHtml.duration / 100 * parseInt(this.currentRange);
+            } else if(this.command === 'volume range' || this.command === 'volume-range'){
+                this.audioHtml.volume = parseInt(this.currentVolume) / 100;
+                console.log(this.currentVolume, this.audioHtml.volume)
             } else{
                 this.audioHtml.play();
             }
@@ -46,6 +49,7 @@ export default {
         // Partenza canzone
         this.audioHtml = this.$refs.audio;
         this.audioHtml.play();
+        this.audioHtml.volume = parseInt(this.currentVolume) / 100;
     }
 }
 </script>

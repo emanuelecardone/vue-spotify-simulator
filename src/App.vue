@@ -1,9 +1,12 @@
 <template>
   <div id="app" class="w-100 vh-100">
-    <Spotify :data="datas" @setPause="getPause($event)" @setSongRange="getSongRange($event)" />
+    <Spotify :data="datas" @setPause="getPause($event)" @setSongRange="getSongRange($event)" 
+    @setVolumeRange="getVolumeRange($event)" />
+
     <Audio v-if="datas.songs.currentSong !== null && datas.songs.playing" 
     :source="datas.songs.evidence[datas.songs.currentSong].source" :command="datas.songs.command"
-    :currentRange="datas.songs.currentSongRange" @setFooter="getFooter($event)"
+    :currentRange="datas.songs.currentSongRange" :currentVolume="datas.songs.currentSongVolume" 
+    @setFooter="getFooter($event)"
     style="width: 0; height: 0;"  />
   </div>
 </template>
@@ -31,6 +34,8 @@ export default {
           currentSongTime: 0,
           // duration
           currentSongDuration: 0,
+          // volume
+          currentSongVolume: '100',
           currentSong: null,
           playing: false,
           // Debug cambio canzone (cambiato al click card)
@@ -118,6 +123,11 @@ export default {
     getSongRange: function(e){
       this.datas.songs.command = e.command;
       this.datas.songs.currentSongRange = e.value;
+    },
+    // Range volume
+    getVolumeRange: function(e){
+      this.datas.songs.command = e.command;
+      this.datas.songs.currentSongVolume = e.value;
     },
     // Invio dati al footer
     getFooter: function(e){

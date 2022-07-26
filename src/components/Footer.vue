@@ -19,7 +19,6 @@
                         </a>
                     </li>
                 </ul>
-                 
             </div> 
         </div>
         <!-- MIDDLE -->
@@ -49,7 +48,8 @@
                     </li>
                 </ul>
             </div>
-            <input type="range" ref="volume" id="volume" value="50" name="volume">
+            <input type="range" ref="volume" @input="volumeRange" id="volume" 
+            :value="volumeValue" name="volume">
         </div>
     </footer>   
 </template>
@@ -62,6 +62,7 @@ export default {
         user: String,
         currentSongTime: Number,
         currentSongDuration: Number,
+        currentSongVolume: String,
         currentCommand: String
     },
     data: function(){
@@ -69,12 +70,18 @@ export default {
             // ranges
             song_range: null,
             volume: null,
-            rangeValue: 0
+            rangeValue: 0,
+            volumeValue: 100
         };
     },
     watch: {
+        // Watch song range
         currentSongTime: function(){
             this.rangeValue = 100 / this.currentSongDuration * this.currentSongTime;
+        },
+        // Watch volume range
+        currentSongVolume: function(){
+            this.volumeValue = this.currentSongVolume;
         }
     },
     methods: {
@@ -88,8 +95,13 @@ export default {
             });
         },
         // Set range volume
-        volumeRange: function(){
-
+        volumeRange: function(e){
+            // Debug ripetizione command (come songRange)
+            const debugVolume = this.currentCommand === 'volume range' ? 'volume-range' : 'volume range';
+            this.$emit('setVolumeRange', {
+                command: debugVolume,
+                value: e.target.value
+            });
         }
     },
     mounted: function(){
