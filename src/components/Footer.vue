@@ -96,7 +96,7 @@ export default {
         currentCommand: function(){
             if(this.playing && this.currentCommand === 'pause'){
                 this.footerContent.icons.middle[2].class = 'far fa-play-circle';
-            } else if(this.playing && this.currentCommand === 'play'){
+            } else{
                 this.footerContent.icons.middle[2].class = 'fa-solid fa-circle-pause';
             }
         }
