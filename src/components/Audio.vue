@@ -1,5 +1,5 @@
 <template>
-    <audio ref="audio" :src="sourceString" type="audio/mpeg">
+    <audio ref="audio" :src="sourceString" type="audio/mpeg" @timeupdate="setFooter">
       Your browser does not support the audio element.
     </audio>
 </template>
@@ -9,7 +9,8 @@ export default {
     name: 'Audio',
     props: {
         source: String,
-        pause: String
+        command: String,
+        currentRange: String
     },
     data: function(){
         return{
@@ -18,17 +19,25 @@ export default {
         };
     },
     watch:{
-        pause: function(){
-            if(this.pause === 'pause'){
+        command: function(){
+            if(this.command === 'pause'){
                 this.audioHtml.pause();
+              // Debug  
+            } else if(this.command === 'song range' || this.command === 'song-range'){
+                console.log('test')
+                this.audioHtml.currentTime = this.audioHtml.duration / 100 * parseInt(this.currentRange);
             } else{
                 this.audioHtml.play();
             }
         }
     },
     methods: {
-        getPause: function(e){
-            console.log(e)
+        // Invio durata al footer
+        setFooter: function(){
+            this.$emit('setFooter', {
+                time: this.$refs.audio.currentTime,
+                duration: this.$refs.audio.duration
+            });
         }
     },
     created: function(){

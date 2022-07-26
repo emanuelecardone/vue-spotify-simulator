@@ -2,7 +2,9 @@
     <section class="spotify w-100 h-100">
         <Header :headerText="data.header" />
         <Main :mainContent="data.main" :songs="data.songs" @setPause="getPause($event)" />
-        <Footer :footerContent="data.footer" :user="data.main.username" />
+        <Footer :footerContent="data.footer" :user="data.main.username" :currentSongTime="data.songs.currentSongTime" 
+        :currentSongDuration="data.songs.currentSongDuration" :currentCommand="data.songs.command"
+        @setCommand="getCommand($event)" @setSongRange="getSongRange($event)" />
     </section>
 </template>
 
@@ -22,8 +24,13 @@ export default {
         data: Object
     },
     methods: {
+        // Pausa
         getPause: function(e){
             this.$emit('setPause', e);
+        },
+        // Range song
+        getSongRange: function(e){
+            this.$emit('setSongRange', e)
         }
     }      
 }

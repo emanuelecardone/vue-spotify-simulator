@@ -34,7 +34,8 @@
                 </ul>
             </div>
             <div class="middle_range_box w-100 h-50 d-flex justify-content-center align-items-center">
-                <input type="range" id="song_range" name="song_range" class="w-50">
+                <input type="range" ref="song_range" @input="songRange" id="song_range" 
+                :value="rangeValue" name="song_range" class="w-50">
             </div>
         </div>
         <!-- RIGHT -->
@@ -48,7 +49,7 @@
                     </li>
                 </ul>
             </div>
-            <input type="range" id="volume" name="volume">
+            <input type="range" ref="volume" id="volume" value="50" name="volume">
         </div>
     </footer>   
 </template>
@@ -58,8 +59,44 @@ export default {
     name: 'Footer',
     props: {
         footerContent: Object,
-        user: String
-    }    
+        user: String,
+        currentSongTime: Number,
+        currentSongDuration: Number,
+        currentCommand: String
+    },
+    data: function(){
+        return{
+            // ranges
+            song_range: null,
+            volume: null,
+            rangeValue: 0
+        };
+    },
+    watch: {
+        currentSongTime: function(){
+            this.rangeValue = 100 / this.currentSongDuration * this.currentSongTime;
+        }
+    },
+    methods: {
+        // Set range song
+        songRange: function(e){
+            // Debug ripetizione command (altrimenti non funziona il watch)
+            const debugRange = this.currentCommand === 'song range' ? 'song-range' : 'song range';
+            this.$emit('setSongRange', {
+                command: debugRange,
+                value: e.target.value
+            });
+        },
+        // Set range volume
+        volumeRange: function(){
+
+        }
+    },
+    mounted: function(){
+        // Ranges mounted 
+        this.song_range = this.$refs.song_range;
+        this.volume = this.$refs.volume;
+    }
 }
 </script>
 
