@@ -1,7 +1,9 @@
 <template>
   <div id="app" class="w-100 vh-100">
-    <Spotify :data="datas" />
-    <Audio v-if="datas.songs.currentSong !== null && datas.songs.playing" :source="datas.songs.evidence[datas.songs.currentSong].source" style="width: 0; height: 0;"  />
+    <Spotify :data="datas" @setPause="getPause($event)" />
+    <Audio v-if="datas.songs.currentSong !== null && datas.songs.playing" 
+    :source="datas.songs.evidence[datas.songs.currentSong].source" :pause="datas.songs.command"
+    style="width: 0; height: 0;"  />
   </div>
 </template>
 
@@ -20,6 +22,9 @@ export default {
       // Tutti i dati dell'App
       datas: {
         songs:{
+          // per stop
+          command: '',
+          currentSongTime: 0,
           currentSong: null,
           playing: false,
           // Debug cambio canzone (cambiato al click card)
@@ -97,6 +102,11 @@ export default {
         }
       }
     };
+  },
+  methods: {
+    getPause: function(e){
+      this.datas.songs.command = e;
+    }
   }
 };
 </script>

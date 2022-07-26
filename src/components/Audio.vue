@@ -8,20 +8,35 @@
 export default {
     name: 'Audio',
     props: {
-        source: String
+        source: String,
+        pause: String
     },
     data: function(){
         return{
-            sourceString: require('../assets/audio/' + this.source + '.mp3')
+            sourceString: require('../assets/audio/' + this.source + '.mp3'),
+            audioHtml: null
         };
     },
+    watch:{
+        pause: function(){
+            if(this.pause === 'pause'){
+                this.audioHtml.pause();
+            } else{
+                this.audioHtml.play();
+            }
+        }
+    },
+    methods: {
+        getPause: function(e){
+            console.log(e)
+        }
+    },
     created: function(){
-        
     },
     mounted: function(){
         // Partenza canzone
-        this.$refs.audio.load();
-        this.$refs.audio.play();
+        this.audioHtml = this.$refs.audio;
+        this.audioHtml.play();
     }
 }
 </script>

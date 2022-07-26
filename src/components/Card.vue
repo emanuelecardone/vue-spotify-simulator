@@ -22,7 +22,8 @@ export default {
     data: function(){
         return{
             // Debug 0.001s
-            playClock: null
+            playClock: null,
+            pause: ''
         };
     },
     methods: {
@@ -37,7 +38,8 @@ export default {
                 this.songsData.playing = true;
               // toggle click sulla stessa card  
             } else if(this.songsData.nextSong === this.songsData.currentSong){
-                this.songsData.playing = !this.songsData.playing;
+                this.pause = this.pause === '' ? 'pause' : '';
+                this.$emit('setPause', this.pause);
               // caso cambio canzone (debuggato col ritardo di 0.001s altrimenti non calcola il cambio al v-if)  
             } else if(this.songsData.nextSong !== this.songsData.currentSong){
                 this.songsData.playing = false;

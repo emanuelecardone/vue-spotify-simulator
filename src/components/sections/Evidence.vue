@@ -5,7 +5,7 @@
             <div class="container-fluid">
                 <div class="row row-cols-4">
                     <div v-for="song, index in evidenceSongs" :key="song + '-' + index" class="col">
-                        <Card :song="song" :songsData="allSongs" :songIndex="index" />
+                        <Card :song="song" :songsData="allSongs" :songIndex="index" @setPause="getPause($event)" />
                     </div>
                 </div>
             </div>
@@ -25,6 +25,12 @@ export default {
         allSongs: Object,
         evidenceSongs: Array,
         current: Number
+    },
+    methods: {
+        getPause: function(e){
+            this.$emit('setPause', e);
+            
+        }
     }    
 }
 </script>

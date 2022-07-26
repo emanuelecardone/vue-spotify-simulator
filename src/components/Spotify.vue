@@ -1,7 +1,7 @@
 <template>
     <section class="spotify w-100 h-100">
         <Header :headerText="data.header" />
-        <Main :mainContent="data.main" :songs="data.songs" />
+        <Main :mainContent="data.main" :songs="data.songs" @setPause="getPause($event)" />
         <Footer :footerContent="data.footer" :user="data.main.username" />
     </section>
 </template>
@@ -20,7 +20,12 @@ export default {
     },
     props: {
         data: Object
-    }    
+    },
+    methods: {
+        getPause: function(e){
+            this.$emit('setPause', e);
+        }
+    }      
 }
 </script>
 
