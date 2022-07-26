@@ -1,16 +1,19 @@
 <template>
   <div id="app" class="w-100 vh-100">
     <Spotify :data="datas" />
+    <Audio v-if="datas.songs.currentSong !== null && datas.songs.playing" :source="datas.songs.evidence[datas.songs.currentSong].source" style="width: 0; height: 0;"  />
   </div>
 </template>
 
 <script>
 import Spotify from './components/Spotify.vue';
+import Audio from './components/Audio.vue';
 
 export default {
   name: "App",
   components: {
-    Spotify
+    Spotify,
+    Audio
   },
   data: function(){
     return{
@@ -18,7 +21,9 @@ export default {
       datas: {
         songs:{
           currentSong: null,
-          
+          playing: false,
+          // Debug cambio canzone (cambiato al click card)
+          nextSong: null,
           // Canzoni per ogni sezione
           evidence:[
             {
@@ -26,6 +31,13 @@ export default {
               artist: 'jamie berry',
               image: 'make-me-believe',
               source: 'makemebelieve',
+              section: 'evidence'
+            },
+            {
+              name: 'prohibition',
+              artist: 'jamie berry',
+              image: 'prohibition',
+              source: 'prohibition',
               section: 'evidence'
             }
           ]

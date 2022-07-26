@@ -1,6 +1,5 @@
 <template>
-    <audio ref="audio">
-      <source :src="sourceString" type="audio/mpeg" />
+    <audio ref="audio" :src="sourceString" type="audio/mpeg">
       Your browser does not support the audio element.
     </audio>
 </template>
@@ -21,6 +20,7 @@ export default {
     },
     mounted: function(){
         // Partenza canzone
+        this.$refs.audio.load();
         this.$refs.audio.play();
     }
 }

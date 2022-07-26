@@ -71,7 +71,7 @@ export default {
                     justify-content: center;
                     align-items: center;
                     text-transform: uppercase;
-                    color: $secondary_color;
+                    color: $primary_color;
                     overflow-y: auto;
                 }
             }   
