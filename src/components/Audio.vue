@@ -29,7 +29,7 @@ export default {
             } else if(this.command === 'volume range' || this.command === 'volume-range'){
                 this.audioHtml.volume = parseInt(this.currentVolume) / 100;
                 console.log(this.currentVolume, this.audioHtml.volume)
-            } else{
+            } else if(this.command === 'play' || this.command === ''){
                 this.audioHtml.play();
             }
         }

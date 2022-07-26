@@ -17,7 +17,7 @@ export default {
     props: {
         song: Object,
         songIndex: Number,
-        songsData: Object
+        songsData: Object,
     },
     data: function(){
         return{
@@ -47,7 +47,6 @@ export default {
                 this.playClock = setTimeout(() => {this.songsData.playing = true;}, 1)
                 console.log(this.songsData)
             }
-            // this.songsData.playing = !this.songsData.playing;
         }
     }
 }

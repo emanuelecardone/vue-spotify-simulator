@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="w-100 vh-100">
     <Spotify :data="datas" @setPause="getPause($event)" @setSongRange="getSongRange($event)" 
-    @setVolumeRange="getVolumeRange($event)" />
+    @setVolumeRange="getVolumeRange($event)" @setPlayStop="getPlayStop($event)" />
 
     <Audio v-if="datas.songs.currentSong !== null && datas.songs.playing" 
     :source="datas.songs.evidence[datas.songs.currentSong].source" :command="datas.songs.command"
@@ -107,7 +107,28 @@ export default {
         footer: {
           icons: {
             left: ['fa-heart', 'fa-folder'],
-            middle: ['fas fa-random', 'fas fa-step-backward', 'far fa-play-circle', 'fas fa-step-forward', 'fas fa-redo-alt'],
+            middle: [
+              {
+                class: 'fas fa-random',
+                ref: 'random'
+              },
+              {
+                class: 'fas fa-step-backward',
+                ref: 'back'
+              },
+              {
+                class: 'far fa-play-circle',
+                ref: 'play'
+              },
+              {
+                class: 'fas fa-step-forward',
+                ref: 'forward'
+              },
+              {
+                class: 'fas fa-redo-alt',
+                ref: 'replay'
+              }
+            ],
             right: ['fa-list-ul', 'fa-desktop', 'fa-volume-up']
           }
         }
@@ -128,6 +149,10 @@ export default {
     getVolumeRange: function(e){
       this.datas.songs.command = e.command;
       this.datas.songs.currentSongVolume = e.value;
+    },
+    // Play Stop footer
+    getPlayStop: function(e){
+      this.datas.songs.command = e.command
     },
     // Invio dati al footer
     getFooter: function(e){

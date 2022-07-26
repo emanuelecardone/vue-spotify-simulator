@@ -26,8 +26,8 @@
             <div class="middle_icons w-100 h-50 d-flex align-items-center">
                 <ul class="w-100 d-flex justify-content-center align-items-center h-100">
                     <li v-for="icon,index in footerContent.icons.middle" :key="icon + index">
-                        <a href="#">
-                            <i :class="icon"></i>
+                        <a href="#"  :ref="icon.ref" @click="middleCommand(icon.ref)">
+                            <i :class="icon.class"></i>
                         </a>
                     </li>
                 </ul>
@@ -63,13 +63,15 @@ export default {
         currentSongTime: Number,
         currentSongDuration: Number,
         currentSongVolume: String,
-        currentCommand: String
+        currentCommand: String,
+        playing: Boolean
     },
     data: function(){
         return{
             // ranges
             song_range: null,
             volume: null,
+            play: null,
             rangeValue: 0,
             volumeValue: 100
         };
@@ -82,6 +84,21 @@ export default {
         // Watch volume range
         currentSongVolume: function(){
             this.volumeValue = this.currentSongVolume;
+        },
+        // Toggle icona play
+        playing: function(){
+            if(this.playing){
+                this.footerContent.icons.middle[2].class = 'fa-solid fa-circle-pause';
+            } else{
+                this.footerContent.icons.middle[2].class = 'far fa-play-circle';
+            }
+        },
+        currentCommand: function(){
+            if(this.playing && this.currentCommand === 'pause'){
+                this.footerContent.icons.middle[2].class = 'far fa-play-circle';
+            } else if(this.playing && this.currentCommand === 'play'){
+                this.footerContent.icons.middle[2].class = 'fa-solid fa-circle-pause';
+            }
         }
     },
     methods: {
@@ -102,12 +119,30 @@ export default {
                 command: debugVolume,
                 value: e.target.value
             });
+        },
+        // Middle commands
+        middleCommand: function(type){
+            switch(type){
+                case 'play':
+                    if(this.playing && this.currentCommand !== 'pause'){
+                        this.$emit('setPlayStop', {
+                            command: 'pause'
+                        })
+                    } else if(this.playing && this.currentCommand === 'pause'){
+                        this.$emit('setPlayStop', {
+                            command: 'play'
+                        })
+                    }          
+                    break;
+            }
         }
     },
     mounted: function(){
         // Ranges mounted 
         this.song_range = this.$refs.song_range;
         this.volume = this.$refs.volume;
+        // TASTO PLAY
+        this.play = this.$refs.play;
     }
 }
 </script>
@@ -141,7 +176,8 @@ export default {
                     color: lime;
                 }
 
-                &.fa-play-circle{
+                &.fa-play-circle,
+                &.fa-circle-pause{
                     font-size: 3rem;
 
                     @media screen and (max-width: 992px){

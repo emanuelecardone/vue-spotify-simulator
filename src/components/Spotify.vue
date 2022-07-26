@@ -4,7 +4,8 @@
         <Main :mainContent="data.main" :songs="data.songs" @setPause="getPause($event)" />
         <Footer :footerContent="data.footer" :user="data.main.username" :currentSongTime="data.songs.currentSongTime" 
         :currentSongDuration="data.songs.currentSongDuration" :currentCommand="data.songs.command" :currentSongVolume="data.songs.currentSongVolume"
-        @setCommand="getCommand($event)" @setSongRange="getSongRange($event)" @setVolumeRange="getVolumeRange($event)" />
+        :playing="data.songs.playing"
+        @setCommand="getCommand($event)" @setSongRange="getSongRange($event)" @setVolumeRange="getVolumeRange($event)" @setPlayStop="getPlayStop($event)" />
     </section>
 </template>
 
@@ -35,6 +36,10 @@ export default {
         // Range volume
         getVolumeRange: function(e){
             this.$emit('setVolumeRange', e);
+        },
+        // Play Stop footer
+        getPlayStop: function(e){
+            this.$emit('setPlayStop', e);
         }
     }      
 }
